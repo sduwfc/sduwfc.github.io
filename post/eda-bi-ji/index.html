@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>EDA笔记 | 行而思雨</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://sduwfc.github.io/favicon.ico?v=1588681979113">
+<link rel="stylesheet" href="https://sduwfc.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="第一章 EDA技术概述
+
+名词定义
+FPGA（Field Programmable Gate Array）现场可编程逻辑门阵列
+专用集成电路（英语：Application Specific Integrated Circuit，缩写：ASI..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://sduwfc.github.io">
+        <img src="https://sduwfc.github.io/images/avatar.png?v=1588681979113" class="site-logo">
+        <h1 class="site-title">行而思雨</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="note" class="site-nav">
+            笔记
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      毕竟几人终得鹿,不知终日梦为鱼
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://sduwfc.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">EDA笔记</h2>
+            <div class="post-date">2020-05-05</div>
+            
+              <div class="feature-container" style="background-image: url('https://sduwfc.github.io/post-images/eda-bi-ji.jpg')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="第一章-eda技术概述">第一章 EDA技术概述</h1>
+<!-- more -->
+<h2 id="名词定义">名词定义</h2>
+<p><a href="https://en.wikipedia.org/wiki/Field-programmable_gate_array"><mark>FPGA</mark>（Field Programmable Gate Array）现场可编程逻辑门阵列</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/%E7%89%B9%E6%AE%8A%E6%87%89%E7%94%A8%E7%A9%8D%E9%AB%94%E9%9B%BB%E8%B7%AF"><strong><mark>专用集成电路</mark></strong></a>（英语：<strong>A</strong>pplication <strong>S</strong>pecific <strong>I</strong>ntegrated <strong>C</strong>ircuit，缩写：<mark><strong>ASIC</strong></mark>），是指依产品需求不同而<a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E5%AE%9A%E5%88%B6">客制化</a>的特殊规格<a href="https://zh.wikipedia.org/wiki/%E9%9B%86%E6%88%90%E9%9B%BB%E8%B7%AF">集成电路</a>；相反地，非客制化的是<a href="https://zh.wikipedia.org/w/index.php?title=%E6%87%89%E7%94%A8%E7%89%B9%E5%AE%9A%E6%A8%99%E6%BA%96%E7%94%A2%E5%93%81&amp;action=edit&amp;redlink=1">应用特定标准产品</a>（Application-specific standard product）集成电路。</p>
+<p><mark>HDL</mark> (Hardware description language) 硬件描述语言</p>
+<p><a href="https://en.wikipedia.org/wiki/Complex_programmable_logic_device"><mark>CPLD</mark> (Complex programmable logic device) 复杂可编程逻辑器件</a></p>
+<p>低密度可编程逻辑器件也称为简单可编程逻辑器件（<strong><mark>SPLD</mark></strong>）</p>
+<p><strong><mark>VHDL</mark></strong>，全称<strong>超高速集成电路硬件描述语言</strong>（英语：<strong><a href="https://zh.wikipedia.org/wiki/VHSIC">VHSIC</a> very high-speed hardware description language</strong>），在基于<a href="https://zh.wikipedia.org/wiki/%E8%A4%87%E9%9B%9C%E5%8F%AF%E7%A8%8B%E5%BC%8F%E9%82%8F%E8%BC%AF%E8%A3%9D%E7%BD%AE">复杂可编程逻辑器件</a>、<a href="https://zh.wikipedia.org/wiki/%E7%8E%B0%E5%9C%BA%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E9%97%A8%E9%98%B5%E5%88%97">现场可编程逻辑门阵列</a>和<a href="https://zh.wikipedia.org/wiki/%E7%89%B9%E6%AE%8A%E6%87%89%E7%94%A8%E7%A9%8D%E9%AB%94%E9%9B%BB%E8%B7%AF">专用集成电路</a>的<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF">数字系统</a>设计中有着广泛的应用。</p>
+<p><a href="https://zh.wikipedia.org/wiki/Verilog"><mark>Verilog</mark></a>是一种用于描述、设计电子系统（特别是数字电路）的硬件描述语言，主要用于在集成电路设计，特别是超大规模集成电路的计算机辅助设计。</p>
+<p>逻辑器件：<strong>通常指门电路和触发器。</strong></p>
+<p>逻辑功能部件：<strong>指能执行某个单一功能的电路，如计数器、译码器、加法器等。</strong></p>
+<p>数字系统：<strong>指由若干逻辑部件组成，能实现复杂功能的电路；规模较大的系统还可分成若干子系统。</strong></p>
+<p><strong>系统与部件：其区别在于功能是否单一。</strong></p>
+<p>​    存储器称为部件（尽管规模很大，但功能单一）；</p>
+<p>​    数字密码锁称之为系统（只需几片MSI器件即可实现）</p>
+<p>**仿效计算机组成方式：**将整个数字系统分为控制器和受控器二部分（或  分成控制器、处理器和存储器三个部分）。</p>
+<p>​    该情况下，系统与部件的<strong>区别</strong>在于其中有无控制器：一个数字电路，          无论其规模大小，必须<strong>具有控制器才可称之为系统。</strong></p>
+<p><strong><mark>IP核</mark>就是知识产权核或知识产权模块的意思</strong></p>
+<p>IP核有三种不同的存在形式：<strong>HDL语言形式</strong>，<strong>网表形式</strong>、<strong>版图形式</strong>。分别对应我们常说的三类IP内核：<strong><a href="https://baike.baidu.com/item/%E8%BD%AF%E6%A0%B8">软核</a></strong>、<strong>固核</strong>和<a href="https://baike.baidu.com/item/%E7%A1%AC%E6%A0%B8"><strong>硬核</strong></a>。</p>
+<p><mark><strong>PLD设计（可编程ASIC</strong>)</mark></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">可</mi><mi mathvariant="normal">编</mi><mi mathvariant="normal">程</mi><mi mathvariant="normal">逻</mi><mi mathvariant="normal">辑</mi><mi mathvariant="normal">器</mi><mi mathvariant="normal">件</mi><mrow><mo fence="true">{</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi mathvariant="normal">低</mi><mi mathvariant="normal">密</mi><mi mathvariant="normal">度</mi><mi>P</mi><mi>L</mi><mi>D</mi><mo>:</mo><mi>R</mi><mi>O</mi><mi>M</mi><mi mathvariant="normal">、</mi><mi>P</mi><mi>L</mi><mi>A</mi><mi mathvariant="normal">、</mi><mi>P</mi><mi>A</mi><mi>L</mi><mi mathvariant="normal">、</mi><mi>G</mi><mi>A</mi><mi>L</mi><mi mathvariant="normal">等</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi mathvariant="normal">高</mi><mi mathvariant="normal">密</mi><mi mathvariant="normal">度</mi><mi>P</mi><mi>L</mi><mi>D</mi><mrow><mo fence="true">{</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>C</mi><mi>P</mi><mi>L</mi><mi>D</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>F</mi><mi>P</mi><mi>G</mi><mi>A</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">可编程逻辑器件\begin{cases}低密度PLD:ROM、PLA、PAL、GAL等\\高密度PLD\begin{cases}CPLD\\FPGA\end{cases}\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.44003em;vertical-align:-1.970015em;"></span><span class="mord cjk_fallback">可</span><span class="mord cjk_fallback">编</span><span class="mord cjk_fallback">程</span><span class="mord cjk_fallback">逻</span><span class="mord cjk_fallback">辑</span><span class="mord cjk_fallback">器</span><span class="mord cjk_fallback">件</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.35002em;"><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-3.1500100000000004em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.30001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-4.60002em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.8500199999999998em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.470015em;"><span style="top:-5.212015000000001em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord cjk_fallback">低</span><span class="mord cjk_fallback">密</span><span class="mord cjk_fallback">度</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord cjk_fallback">、</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">L</span><span class="mord mathdefault">A</span><span class="mord cjk_fallback">、</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">A</span><span class="mord mathdefault">L</span><span class="mord cjk_fallback">、</span><span class="mord mathdefault">G</span><span class="mord mathdefault">A</span><span class="mord mathdefault">L</span><span class="mord cjk_fallback">等</span></span></span><span style="top:-3.0300149999999997em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord cjk_fallback">高</span><span class="mord cjk_fallback">密</span><span class="mord cjk_fallback">度</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">G</span><span class="mord mathdefault">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.970015em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h2 id="eda设计流程"><strong>EDA设计流程</strong></h2>
+<figure data-type="image" tabindex="1"><img src="https://cdn.wangfuchao.com/pic/%E5%9B%BE%E7%89%871.png" alt="" loading="lazy"></figure>
+<p><strong>1.设计输入（原理图／HDL文本编辑）</strong></p>
+<figure data-type="image" tabindex="2"><img src="https://cdn.wangfuchao.com/pic/20200427232624.png" alt="" loading="lazy"></figure>
+<p><strong>2. 综合</strong></p>
+<figure data-type="image" tabindex="3"><img src="https://cdn.wangfuchao.com/pic/POWERPNT_WZVclNNSKC.png" alt="" loading="lazy"></figure>
+<p><strong>3.</strong> <strong>适配</strong></p>
+<figure data-type="image" tabindex="4"><img src="https://cdn.wangfuchao.com/pic/20200427232749.png" alt="" loading="lazy"></figure>
+<p><strong>4.仿真：行为仿真、功能仿真与时序仿真、静态时序分析</strong></p>
+<figure data-type="image" tabindex="5"><img src="https://cdn.wangfuchao.com/pic/20200427232909.png" alt="" loading="lazy"></figure>
+<p><strong>5.</strong> <strong>编程下载</strong></p>
+<p>​    如果编译、综合、布线/适配和行为仿真、功能仿真、时序仿真等过程都没有发现问题，即满足原设计的要求，则可以将由FPGA/CPLD布线/适配器产生的配置/下载文件通过编程器或下载电缆载入目标芯片FPGA或CPLD中。</p>
+<p><strong>6.</strong> <strong>硬件测试</strong></p>
+<h2 id="asic及其设计流程">ASIC及其设计流程</h2>
+<figure data-type="image" tabindex="6"><img src="https://cdn.wangfuchao.com/pic/20200427233243.png" alt="" loading="lazy"></figure>
+<p><strong>ASIC设计简介</strong></p>
+<figure data-type="image" tabindex="7"><img src="https://cdn.wangfuchao.com/pic/20200427233307.png" alt="" loading="lazy"></figure>
+<p><strong>ASIC设计一般流程简述</strong></p>
+<figure data-type="image" tabindex="8"><img src="https://cdn.wangfuchao.com/pic/20200427233353.png" alt="" loading="lazy"></figure>
+<h1 id="第二章-fpga与cpld的结构原理">第二章 FPGA与CPLD的结构原理</h1>
+<p><strong>基本原理</strong></p>
+<figure data-type="image" tabindex="9"><img src="https://cdn.wangfuchao.com/pic/20200428230025.png" alt="" loading="lazy"></figure>
+<p><strong>作图表示</strong></p>
+<figure data-type="image" tabindex="10"><img src="https://cdn.wangfuchao.com/pic/20200428231229.png" alt="" loading="lazy"></figure>
+<h2 id="四种spld器件的区别"><strong>四种SPLD器件的区别</strong></h2>
+<table>
+<thead>
+<tr>
+<th><strong>器  件</strong></th>
+<th><strong>与 阵 列</strong></th>
+<th><strong>或 阵 列</strong></th>
+<th><strong>输出电路</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PROM</strong></td>
+<td><strong>固定</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+</tr>
+<tr>
+<td><strong>PLA</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+</tr>
+<tr>
+<td><strong>PAL</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+<td><strong>固定</strong></td>
+</tr>
+<tr>
+<td><strong>GAL</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+<td><strong>可组态</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="prom结构原理"><strong>PROM结构原理</strong></h3>
+<figure data-type="image" tabindex="11"><img src="https://cdn.wangfuchao.com/pic/20200428232055.png" alt="" loading="lazy"></figure>
+<p><strong>例：半加器</strong></p>
+<figure data-type="image" tabindex="12"><img src="https://cdn.wangfuchao.com/pic/20200428232203.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="13"><img src="https://cdn.wangfuchao.com/pic/20200428232208.png" alt="" loading="lazy"></figure>
+<p>​</p>
+<p>​</p>
+<h3 id="pla结构原理"><strong>PLA结构原理</strong></h3>
+<figure data-type="image" tabindex="14"><img src="https://cdn.wangfuchao.com/pic/20200428232638.png" alt="" loading="lazy"></figure>
+<h3 id="pal结构原理"><strong>PAL结构原理</strong></h3>
+<figure data-type="image" tabindex="15"><img src="https://cdn.wangfuchao.com/pic/20200428232743.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="16"><img src="https://cdn.wangfuchao.com/pic/20200428232749.png" alt="" loading="lazy"></figure>
+<h3 id="gal结构原理">GAL结构原理</h3>
+<p>General Array Logic Device</p>
+<p>与阵列 + 输出逻辑宏单元（OLMC）</p>
+<p><strong>优点</strong>:</p>
+<p>通用性好。宏单元可根据需要任意组态，当输入引脚不够用时还可将OLMC组态为输入端，因而使用十分灵活.</p>
+<p>采用UVMOS或EECMOS工艺，可重复使用</p>
+<p><strong>不足:</strong></p>
+<p>※ 只能作为同步时序电路使用，且只能是外加时钟；</p>
+<p>※ 各触发器只能同时置位和清零；</p>
+<p>※ 每个宏单元只有一条向与阵列反馈的通道；</p>
+<p>※ 每个OLMC中或门的输入端是固定的。</p>
+<figure data-type="image" tabindex="17"><img src="https://cdn.wangfuchao.com/pic/20200428233122.png" alt="" loading="lazy"></figure>
+<h4 id="1寄存器模式">（1）寄存器模式</h4>
+<figure data-type="image" tabindex="18"><img src="https://cdn.wangfuchao.com/pic/20200428233234.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="19"><img src="https://cdn.wangfuchao.com/pic/20200428233239.png" alt="" loading="lazy"></figure>
+<h4 id="2复合模式">（2）复合模式</h4>
+<figure data-type="image" tabindex="20"><img src="https://cdn.wangfuchao.com/pic/20200428235201.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="21"><img src="https://cdn.wangfuchao.com/pic/20200428235206.png" alt="" loading="lazy"></figure>
+<h4 id="3简单模式">（3）简单模式</h4>
+<figure data-type="image" tabindex="22"><img src="https://cdn.wangfuchao.com/pic/20200428235229.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="23"><img src="https://cdn.wangfuchao.com/pic/20200428235233.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="24"><img src="https://cdn.wangfuchao.com/pic/20200428235302.png" alt="" loading="lazy"></figure>
+<h2 id="cpld结构原理">CPLD结构原理</h2>
+<p><strong>MAX 7000S器件的内部结构</strong></p>
+<figure data-type="image" tabindex="25"><img src="https://cdn.wangfuchao.com/pic/20200501233443.png" alt="" loading="lazy"></figure>
+<h2 id="fpga结构原理">FPGA结构原理</h2>
+<p><strong>FPGA器件的内部结构示意图</strong></p>
+<figure data-type="image" tabindex="26"><img src="https://cdn.wangfuchao.com/pic/20200501233502.png" alt="" loading="lazy"></figure>
+<p><strong>典型FPGA的结构</strong>  <strong>XC4000器件的CLB结构</strong></p>
+<figure data-type="image" tabindex="27"><img src="https://cdn.wangfuchao.com/pic/20200501233558.png" alt="" loading="lazy"></figure>
+<p><strong>Altera的Cyclone IV器件结构</strong></p>
+<p><strong>Cyclone IV器件的LE结构</strong></p>
+<figure data-type="image" tabindex="28"><img src="https://cdn.wangfuchao.com/pic/20200501233626.png" alt="" loading="lazy"></figure>
+<h2 id="cpldfpga的编程与配置">CPLD/FPGA的编程与配置</h2>
+<p>（1）基于电可擦除存储单元的EEPROM或Flash技术。</p>
+<p>（2）基于SRAM查找表的编程单元。</p>
+<p>（3）基于一次性可编程反熔丝编程单元。</p>
+<figure data-type="image" tabindex="29"><img src="https://cdn.wangfuchao.com/pic/20200501234150.png" alt="" loading="lazy"></figure>
+<p><mark>CPLD在系统编程</mark></p>
+<p><mark>FPGA配置方式</mark></p>
+<p><strong>Altera的FPGA器件配置方式</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>方  式</strong></th>
+<th style="text-align:center"><strong>说</strong>  <strong>明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PS**（Passive Serial）模式**</td>
+<td style="text-align:center">被动串行，由外部主机（MAX  II芯片或微处理器）控制配置过程</td>
+</tr>
+<tr>
+<td style="text-align:center">AS**（Active Serial）**</td>
+<td style="text-align:center">主动串行，用串行配置器件（如EPCS1，EPCS4，EPCS16）配置</td>
+</tr>
+<tr>
+<td style="text-align:center">FPP**（Fast Passive Parallel）**</td>
+<td style="text-align:center">快速被动并行，使用增强型配置器件或并行同步微处理器接口进行配置</td>
+</tr>
+<tr>
+<td style="text-align:center">AP**（Active Parallel）**</td>
+<td style="text-align:center">主动并行</td>
+</tr>
+<tr>
+<td style="text-align:center">PPS**（Passive Parallel Synchronous）**</td>
+<td style="text-align:center">被动并行同步，使用并行同步微处理器接口进行配置</td>
+</tr>
+<tr>
+<td style="text-align:center">PPA**（Passive Parallel Asynchronous）**</td>
+<td style="text-align:center">被动并行异步，使用并行异步微处理器接口进行配置</td>
+</tr>
+<tr>
+<td style="text-align:center">JTAG<strong>模式</strong></td>
+<td style="text-align:center">使用下载电缆通过JTAG接口进行配置</td>
+</tr>
+</tbody>
+</table>
+<h1 id="第3章-组合电路的vhdl设计">第3章 组合电路的VHDL设计</h1>
+<h2 id="vhdl程序结构"><strong>VHDL程序结构</strong></h2>
+<figure data-type="image" tabindex="30"><img src="https://cdn.wangfuchao.com/pic/20200502122143.png" alt="" loading="lazy"></figure>
+<h2 id="entity实体描述">ENTITY实体描述</h2>
+<p>实体使用<mark>实体说明</mark>来描述。实体说明描述的是一个设计的外貌，即描述实体的外部接口情况以及实体内的类属参数等。</p>
+<h3 id="实体说明的格式"><strong>实体说明的格式：</strong></h3>
+<blockquote>
+<p><mark>ENTITY</mark> &lt;实体名&gt; <mark>IS</mark></p>
+<p>​    [参数说明部分];</p>
+<p>​    [端口说明部分]；</p>
+<p><mark>END</mark> [<mark>ENTITY</mark>] &lt;实体名&gt; ;</p>
+</blockquote>
+<p>实体说明以“<strong>ENTITY &lt;实体名&gt; IS</strong>” 开始，至&quot; <strong>END ENTITY &lt;实体名&gt;</strong>” 结束。</p>
+<p><strong>参数说明</strong>主要为设计实体指定参数，如端口宽度、器件延迟时间等；</p>
+<p><strong>端口说明</strong>描述的是设计实体和外部的接口，具体说就是对<mark>端口名称、端口模式和端口数据类型</mark>进行说明。</p>
+<figure data-type="image" tabindex="31"><img src="https://cdn.wangfuchao.com/pic/20200502000143.png" alt="" loading="lazy"></figure>
+<p>【程序】</p>
+<blockquote>
+<p><mark>ENTITY</mark> mux21 <mark>IS</mark></p>
+<p><strong>PORT</strong>( a, b :  <strong>IN</strong> BIT ;</p>
+<p>​                  s :  <strong>IN</strong> BIT;</p>
+<p>​                  y : <strong>OUT</strong> BIT) ;</p>
+<p><mark>END ENTITY</mark> mux21 ;</p>
+</blockquote>
+<p>(1)<mark>端口名称</mark>：输入输出信号的名称，在实体中必须是唯一的。</p>
+<p>(2)<mark>端口模式</mark>：说明信号的方向，有以下几种模式：</p>
+<p><mark>IN</mark>   输入信号；</p>
+<p><mark>OUT</mark>   输出信号；</p>
+<p><mark>INOUT</mark>  双向信号；</p>
+<p><mark>BUFFER</mark> 输出信号，但可在内部反馈使用(缓冲)；</p>
+<blockquote>
+<p>​     BUFFER是INOUT的子集，但作输入用时，信号不是由外部驱动，而是从输出反馈得到。</p>
+</blockquote>
+<p>(3)<mark>端口数据类型</mark>：端口信号的取值类型</p>
+<blockquote>
+<p>​    明确地指定和严格地定义端口信号的取值类型是VHDL的重要特点, 即所谓的强数据类型，是学习VHDL应特别注意之处.</p>
+</blockquote>
+<h3 id="数据类型">数据类型</h3>
+<p><strong>VHDL中常见的数据类型有以下几种：</strong></p>
+<p><mark>BIT</mark>        位类型，取值'0','1' ;<strong><mark>在VHDL中，逻辑位0或者1的表达必须加单引号，否则VHDL综合器会将其解释成整数数据类型INREGER</mark></strong></p>
+<p><mark>BIT_VECTOR</mark>    位向量类型，是BIT的组合;</p>
+<p><mark>STD_LOGIC</mark>     工业标准的逻辑位类型，取值0 '0','1','X','Z'等九种;</p>
+<p><mark>STD_LOGIC_VECTOR</mark> 工业标准的逻辑位向量类型，是STD_ LOGIC的组合</p>
+<p><mark>INTEGER</mark>      整数类型，可用作循环的指针或常数;</p>
+<p><mark>BOOLEAN</mark>      布尔类型，取值FALSE、TRUE.</p>
+<figure data-type="image" tabindex="32"><img src="https://cdn.wangfuchao.com/pic/20200502115124.png" alt="" loading="lazy"></figure>
+<h2 id="architecture-结构体描述">Architecture 结构体描述</h2>
+<p>​    结构体(Architecture )描述的是实体内部的逻辑功能。  在电路上相当于器件的内部电路结构.</p>
+<figure data-type="image" tabindex="33"><img src="https://cdn.wangfuchao.com/pic/20200502115359.png" alt="" loading="lazy"></figure>
+<p>【结构体程序】</p>
+<blockquote>
+<p><mark>ARCHITECTURE</mark> one <mark>OF</mark> mux21 <mark>IS</mark></p>
+<p><mark>BEGIN</mark></p>
+<p>y &lt;= a WHEN s = ‘0' ELSE</p>
+<p>​     b;</p>
+<p><mark>END ARCHITECTURE</mark> one;</p>
+</blockquote>
+<h3 id="结构体的基本格式"><strong>结构体的基本格式：</strong></h3>
+<blockquote>
+<p><mark>ARCHITECTURE</mark> &lt;<strong>结构体名&gt;</strong> <mark>OF</mark> &lt;<strong>实体名&gt;</strong> <mark>IS</mark></p>
+<p>[<strong>结构体说明部分]</strong></p>
+<p><mark>BEGIN</mark></p>
+<p>&lt;<strong>功能描述语句&gt;</strong></p>
+<p><mark>END [ARCHITECTURE]</mark> &lt;<strong>结构体名&gt; ;</strong></p>
+</blockquote>
+<p>（<strong>1）OF后的实体名应与实体说明中的实体名一致；</strong></p>
+<p>（<strong>2）功能描述语句是结构体中的主要部分，用于描述所实现实体的功能</strong></p>
+<p>四种不同类型的<strong>并行语句：</strong></p>
+<p><strong>进程语句</strong></p>
+<p><strong>进程语句</strong></p>
+<p><strong>子程序调用语句</strong></p>
+<p><strong>元件例化语句</strong></p>
+<p>（<strong>3）结构体说明部分是对结构体的功能描述语句中将要用到的信号、数据类型、常数、元件、函数和过程等加以说明。</strong></p>
+<h3 id="库-程序包"><strong>库、程序包</strong></h3>
+<p>VHDL的基本结构由前述的设计实体和结构体组成，但实际中的VHDL程序除上述两个基本部分以外通常还包括另外三个部分：<mark>库</mark>、<mark>程序包</mark>和配置</p>
+<p><mark>库</mark>：主要用来存放已经编译的实体、结构体、程序包等。</p>
+<p><mark>程序包</mark>：主要用来存放各个设计都能共享的数据类型、子程序、常数和元件等。</p>
+<h4 id="库和程序包的语句格式">库和程序包的语句格式</h4>
+<blockquote>
+<p>VHDL<strong>一个库中的设计单元可以用作其他设计的资源；一个设计可以使用多个库中的设计单元。</strong></p>
+<p>当一个设计要使用<strong>库中的设计单元时：</strong></p>
+<p>首先要在每个设计的开头说明要引用的<strong>库；</strong></p>
+<p>然后指明要使用库中的哪一个设计单元（<strong>程序包）。</strong></p>
+</blockquote>
+<p>（<strong>1）库说明语句格式：</strong> <mark>library</mark> &lt;<strong>库名&gt;；</strong></p>
+<p>（<strong>2）程序包语句说明格式：</strong> <mark>use</mark> &lt;<strong>库名&gt;.&lt;程序包名&gt;.all；</strong></p>
+<blockquote>
+<p>all表示使用该程序包中的所有项目</p>
+</blockquote>
+<p>举例如下</p>
+<blockquote>
+<p><strong>LIBRARY</strong> IEEE;</p>
+<p><strong>USE</strong> IEEE.STD_LOGIC_1164.<strong>ALL</strong>;</p>
+<p><strong>ENTITY</strong> example <strong>IS</strong></p>
+<p><strong>PORT</strong> ( d: <strong>IN</strong> STD_ LOGIC_VECTOR (15 <strong>DOWNTO</strong> 0);</p>
+<p>​    clk, reset, oe: <strong>IN</strong> STD_LOGIC;</p>
+<p>​    q1: <strong>OUT</strong> STD_LOGIC_VECTEOR (15 <strong>DOWNTO</strong> 0);</p>
+<p>​    q2: <strong>INOUT</strong> STD_LOGIC_VECTOR (15 <strong>DOWNTO</strong> 0);</p>
+<p>​     int: <strong>BUFFER</strong> STD_LOGIC;</p>
+<p>​     opt: <strong>OUT</strong> STD_LOGIC );</p>
+<p><strong>END</strong> example;</p>
+</blockquote>
+<h2 id="configuration配置">CONFIGURATION<strong>配置</strong></h2>
+<p><strong>配置可以把特定的结构体指定给一个确定的实体</strong></p>
+<p><strong>例如当对实体进行仿真时可为同一实体配置不同的结构体以比较其差别。</strong></p>
+<p><mark><strong>配置语句的一般格式如下：</strong></mark></p>
+<blockquote>
+<p><mark>CONFIGURATION</mark> &lt;<strong>配置名&gt;</strong> <mark>OF</mark> &lt;<strong>实体名&gt;</strong> <mark>IS</mark></p>
+<p><mark>FOR</mark> &lt;<strong>选配结构体名&gt;</strong></p>
+<p><mark>END FOR</mark>;</p>
+<p><mark>END</mark> <strong>[&lt;配置名&gt;]</strong>;</p>
+</blockquote>
+<figure data-type="image" tabindex="34"><img src="https://cdn.wangfuchao.com/pic/20200502122046.png" alt="" loading="lazy"></figure>
+<pre><code class="language-bash">git config --global user.name &quot;sduwfc&quot;
+git config --global user.email &quot;17667501727@163.com&quot;
+</code></pre>
+<pre><code class="language-bash">ssh-keygen -t rsa -C &quot;17667501727@163.com&quot;
+</code></pre>
+<h1 id="eda实验">EDA实验</h1>
+<p><strong>实验一到实验三</strong>的实验报告要求：</p>
+<ol>
+<li>
+<p>实验内容与原理说明（包括框图、逻辑表达式和真值表）；</p>
+</li>
+<li>
+<p>实验模块程序代码（设计模块Design Block）和激励代码（激励模块Test Bench）；</p>
+</li>
+<li>
+<p>仿真波形图；</p>
+</li>
+<li>
+<p>综合得到的门级电路图；</p>
+</li>
+<li>
+<p>实验结果分析及思考。</p>
+</li>
+</ol>
+<p>实验软件工具：</p>
+<ol>
+<li>
+<p>QuartusII;</p>
+</li>
+<li>
+<p>ModelSim SE.</p>
+</li>
+</ol>
+<h1 id="实验一-加法器设计">实验一 加法器设计</h1>
+<h2 id="1-设计一个16位二进制全加器模块">1、 设计一个16位二进制全加器模块。</h2>
+<h2 id="2-用层次化设计方法设计一个16位二进制全加器模块">2、 用层次化设计方法，设计一个16位二进制全加器模块。</h2>
+<h2 id="3-设计一个16位超前进位二进制全加器模块">3、 设计一个16位超前进位二进制全加器模块。</h2>
+<h2 id="4-设计一个8位8421-bcd码全加器模块">4、 设计一个8位8421-BCD码全加器模块。（*）</h2>
+<h1 id="实验二-编码器和译码器设计">实验二 编码器和译码器设计</h1>
+<h2 id="1-设计一个8-3线优先编码器74ls148">1、 设计一个8-3线优先编码器（74LS148）；</h2>
+<h2 id="2-设计一个3-8线译码器74ls138">2、 设计一个3-8线译码器（74LS138）。</h2>
+<h1 id="实验三-乘法器和除法器设计">实验三 乘法器和除法器设计</h1>
+<h2 id="7-移位相加型8位硬件乘法器设计">7、移位相加型8位硬件乘法器设计。</h2>
+<h2 id="8-高速硬件除法器设计">8、高速硬件除法器设计。</h2>
+<h2 id="9-串行静态显示控制电路设">9、串行静态显示控制电路设</h2>
+<h1 id="实验四-有限状态机设计">实验四  有限状态机设计</h1>
+<p>实验报告要求：</p>
+<ol>
+<li>
+<p>实验内容与详细说明（包括框图、逻辑表达式和真值表）；</p>
+</li>
+<li>
+<p>分别用<strong>格雷码</strong>和<strong>one-hot码</strong>进行编码，进行综合时，在QuartusII的器件库中选择一款器件，报告中要说明所用器件的型号；综合后要说明设计模块所占用该型器件的资源等；</p>
+</li>
+<li>
+<p>实验模块程序代码（设计模块Design Block）和激励代码（激励模块Test Bench）；</p>
+</li>
+<li>
+<p>仿真波形图；</p>
+</li>
+<li>
+<p>综合得到的门级电路图，所用器件的型号以及设计模块所占用该型器件的资源情况；</p>
+</li>
+<li>
+<p>实验结果分析及思考。</p>
+</li>
+<li>
+<p>每一次报告用Word文档提交，文件名：姓名_班级_第几次实验_学号。</p>
+</li>
+</ol>
+<p>实验软件工具：</p>
+<ol>
+<li>
+<p>QuartusII;</p>
+</li>
+<li>
+<p>ModelSim SE.</p>
+</li>
+</ol>
+<h2 id="1-设计一个交通红绿灯控制器模块实现主干道和支路之间红绿黄灯的信号转换">1、 设计一个交通红绿灯控制器模块，实现主干道和支路之间红绿黄灯的信号转换。</h2>
+<h2 id="2-设计一个10层楼的电梯控制器模块要求1-时间先后优先级2位置先后优先级">2、 设计一个10层楼的电梯控制器模块，要求：(1) 时间先后优先级；(2)位置先后优先级。</h2>
+<h2 id="3-设计一个10位计算器-要有bcd码转换共阴极led笔画显示部分实现">3、 设计一个10位计算器(+,-,*,/)，要有BCD码转换，共阴极LED笔画显示部分实现。</h2>
+
+            </div>
+            
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '0b06835ca8e3095de963',
+        clientSecret: '79cda2fa920aba332de30b92167062d593f53fa8',
+        repo: 'sduwfc.github.io',
+        owner: 'sduwfc',
+        admin: ['sduwfc'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
