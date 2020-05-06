@@ -1,16 +1,100 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>页面跳转 Page forwarding</title>
-    <meta http-equiv="Cache-Control: no-cache, no-store, must-revalidate">
-    <meta http-equiv="refresh" content="0;url=https://sduwfc.github.io/tuku/" />
-    <style>body, html{background:#303030;color:#fff;}a{text-decoration: none;color:#2196f3;transition: all .25s;}</style>
-</head>
-<body>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
 
-<p>你不该来到这，现在 <a href="https://sduwfc.github.io/tuku/">请点此处</a> 回到正轨。<br>This is weird, <a href="https://sduwfc.github.io/tuku/">click here</a> Back to home-page.</p>
+<title>行而思雨</title>
+<meta name="description" content="毕竟几人终得鹿,不知终日梦为鱼">
 
-</body>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://e.coding.net/sduwfc/gridea.git/favicon.ico?v=1588728898533">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://e.coding.net/sduwfc/gridea.git/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://e.coding.net/sduwfc/gridea.git">
+        <img class="avatar" src="https://e.coding.net/sduwfc/gridea.git/images/avatar.png?v=1588728898533" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://e.coding.net/sduwfc/gridea.git">
+        <h1 class="site-title">行而思雨</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+    </div>
+  </div>
+</transition>
+
+
+        <div class="content-container">
+          
+          <div class="tags-container">
+            
+          </div>
+
+        </div>
+
+        <div class="site-footer">
+  <div class="slogan">毕竟几人终得鹿,不知终日梦为鱼</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://e.coding.net/sduwfc/gridea.git/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+      </div>
+      <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+    </div>
+  </body>
 </html>
