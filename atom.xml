@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://coding.wangfuchao.com</id>
     <title>行而思雨</title>
-    <updated>2020-05-06T09:30:53.819Z</updated>
+    <updated>2020-05-13T15:48:03.437Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://coding.wangfuchao.com"/>
     <link rel="self" href="https://coding.wangfuchao.com/atom.xml"/>
@@ -10,6 +10,726 @@
     <logo>https://coding.wangfuchao.com/images/avatar.png</logo>
     <icon>https://coding.wangfuchao.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 行而思雨</rights>
+    <entry>
+        <title type="html"><![CDATA[1]]></title>
+        <id>https://coding.wangfuchao.com/post/1/</id>
+        <link href="https://coding.wangfuchao.com/post/1/">
+        </link>
+        <updated>2020-05-13T15:47:40.000Z</updated>
+        <content type="html"><![CDATA[<p>[TOC]</p>
+<h1 id="第一章-eda技术概述">第一章 EDA技术概述</h1>
+<h2 id="名词定义">名词定义</h2>
+<p><a href="https://en.wikipedia.org/wiki/Field-programmable_gate_array"><mark>FPGA</mark>（Field Programmable Gate Array）现场可编程逻辑门阵列</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/%E7%89%B9%E6%AE%8A%E6%87%89%E7%94%A8%E7%A9%8D%E9%AB%94%E9%9B%BB%E8%B7%AF"><strong><mark>专用集成电路</mark></strong></a>（英语：<strong>A</strong>pplication <strong>S</strong>pecific <strong>I</strong>ntegrated <strong>C</strong>ircuit，缩写：<mark><strong>ASIC</strong></mark>），是指依产品需求不同而<a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E5%AE%9A%E5%88%B6">客制化</a>的特殊规格<a href="https://zh.wikipedia.org/wiki/%E9%9B%86%E6%88%90%E9%9B%BB%E8%B7%AF">集成电路</a>；相反地，非客制化的是<a href="https://zh.wikipedia.org/w/index.php?title=%E6%87%89%E7%94%A8%E7%89%B9%E5%AE%9A%E6%A8%99%E6%BA%96%E7%94%A2%E5%93%81&amp;action=edit&amp;redlink=1">应用特定标准产品</a>（Application-specific standard product）集成电路。</p>
+<p><mark>HDL</mark> (Hardware description language) 硬件描述语言</p>
+<p><a href="https://en.wikipedia.org/wiki/Complex_programmable_logic_device"><mark>CPLD</mark> (Complex programmable logic device) 复杂可编程逻辑器件</a></p>
+<p>低密度可编程逻辑器件也称为简单可编程逻辑器件（<strong><mark>SPLD</mark></strong>）</p>
+<p><strong><mark>VHDL</mark></strong>，全称<strong>超高速集成电路硬件描述语言</strong>（英语：<strong><a href="https://zh.wikipedia.org/wiki/VHSIC">VHSIC</a> very high-speed hardware description language</strong>），在基于<a href="https://zh.wikipedia.org/wiki/%E8%A4%87%E9%9B%9C%E5%8F%AF%E7%A8%8B%E5%BC%8F%E9%82%8F%E8%BC%AF%E8%A3%9D%E7%BD%AE">复杂可编程逻辑器件</a>、<a href="https://zh.wikipedia.org/wiki/%E7%8E%B0%E5%9C%BA%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E9%97%A8%E9%98%B5%E5%88%97">现场可编程逻辑门阵列</a>和<a href="https://zh.wikipedia.org/wiki/%E7%89%B9%E6%AE%8A%E6%87%89%E7%94%A8%E7%A9%8D%E9%AB%94%E9%9B%BB%E8%B7%AF">专用集成电路</a>的<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF">数字系统</a>设计中有着广泛的应用。</p>
+<p><a href="https://zh.wikipedia.org/wiki/Verilog"><mark>Verilog</mark></a>是一种用于描述、设计电子系统（特别是数字电路）的硬件描述语言，主要用于在集成电路设计，特别是超大规模集成电路的计算机辅助设计。</p>
+<p>逻辑器件：<strong>通常指门电路和触发器。</strong></p>
+<p>逻辑功能部件：<strong>指能执行某个单一功能的电路，如计数器、译码器、加法器等。</strong></p>
+<p>数字系统：<strong>指由若干逻辑部件组成，能实现复杂功能的电路；规模较大的系统还可分成若干子系统。</strong></p>
+<p><strong>系统与部件：其区别在于功能是否单一。</strong></p>
+<p>​    存储器称为部件（尽管规模很大，但功能单一）；</p>
+<p>​    数字密码锁称之为系统（只需几片MSI器件即可实现）</p>
+<p>**仿效计算机组成方式：**将整个数字系统分为控制器和受控器二部分（或  分成控制器、处理器和存储器三个部分）。</p>
+<p>​    该情况下，系统与部件的<strong>区别</strong>在于其中有无控制器：一个数字电路，          无论其规模大小，必须<strong>具有控制器才可称之为系统。</strong></p>
+<p><strong><mark>IP核</mark>就是知识产权核或知识产权模块的意思</strong></p>
+<p>IP核有三种不同的存在形式：<strong>HDL语言形式</strong>，<strong>网表形式</strong>、<strong>版图形式</strong>。分别对应我们常说的三类IP内核：<strong><a href="https://baike.baidu.com/item/%E8%BD%AF%E6%A0%B8">软核</a></strong>、<strong>固核</strong>和<a href="https://baike.baidu.com/item/%E7%A1%AC%E6%A0%B8"><strong>硬核</strong></a>。</p>
+<p><mark><strong>PLD设计（可编程ASIC</strong>)</mark></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">可</mi><mi mathvariant="normal">编</mi><mi mathvariant="normal">程</mi><mi mathvariant="normal">逻</mi><mi mathvariant="normal">辑</mi><mi mathvariant="normal">器</mi><mi mathvariant="normal">件</mi><mrow><mo fence="true">{</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi mathvariant="normal">低</mi><mi mathvariant="normal">密</mi><mi mathvariant="normal">度</mi><mi>P</mi><mi>L</mi><mi>D</mi><mo>:</mo><mi>R</mi><mi>O</mi><mi>M</mi><mi mathvariant="normal">、</mi><mi>P</mi><mi>L</mi><mi>A</mi><mi mathvariant="normal">、</mi><mi>P</mi><mi>A</mi><mi>L</mi><mi mathvariant="normal">、</mi><mi>G</mi><mi>A</mi><mi>L</mi><mi mathvariant="normal">等</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi mathvariant="normal">高</mi><mi mathvariant="normal">密</mi><mi mathvariant="normal">度</mi><mi>P</mi><mi>L</mi><mi>D</mi><mrow><mo fence="true">{</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>C</mi><mi>P</mi><mi>L</mi><mi>D</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>F</mi><mi>P</mi><mi>G</mi><mi>A</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">可编程逻辑器件\begin{cases}低密度PLD:ROM、PLA、PAL、GAL等\\高密度PLD\begin{cases}CPLD\\FPGA\end{cases}\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.44003em;vertical-align:-1.970015em;"></span><span class="mord cjk_fallback">可</span><span class="mord cjk_fallback">编</span><span class="mord cjk_fallback">程</span><span class="mord cjk_fallback">逻</span><span class="mord cjk_fallback">辑</span><span class="mord cjk_fallback">器</span><span class="mord cjk_fallback">件</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.35002em;"><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.19999em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-3.1500100000000004em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.30001em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎪</span></span></span><span style="top:-4.60002em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.8500199999999998em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.470015em;"><span style="top:-5.212015000000001em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord cjk_fallback">低</span><span class="mord cjk_fallback">密</span><span class="mord cjk_fallback">度</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord cjk_fallback">、</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">L</span><span class="mord mathdefault">A</span><span class="mord cjk_fallback">、</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">A</span><span class="mord mathdefault">L</span><span class="mord cjk_fallback">、</span><span class="mord mathdefault">G</span><span class="mord mathdefault">A</span><span class="mord mathdefault">L</span><span class="mord cjk_fallback">等</span></span></span><span style="top:-3.0300149999999997em;"><span class="pstrut" style="height:3.75em;"></span><span class="mord"><span class="mord cjk_fallback">高</span><span class="mord cjk_fallback">密</span><span class="mord cjk_fallback">度</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">G</span><span class="mord mathdefault">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.970015em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h2 id="eda设计流程"><strong>EDA设计流程</strong></h2>
+<figure data-type="image" tabindex="1"><img src="https://cdn.wangfuchao.com/pic/%E5%9B%BE%E7%89%871.png" alt="" loading="lazy"></figure>
+<p><strong>1.设计输入（原理图／HDL文本编辑）</strong></p>
+<figure data-type="image" tabindex="2"><img src="https://cdn.wangfuchao.com/pic/20200427232624.png" alt="" loading="lazy"></figure>
+<p><strong>2. 综合</strong></p>
+<figure data-type="image" tabindex="3"><img src="https://cdn.wangfuchao.com/pic/POWERPNT_WZVclNNSKC.png" alt="" loading="lazy"></figure>
+<p><strong>3.</strong> <strong>适配</strong></p>
+<figure data-type="image" tabindex="4"><img src="https://cdn.wangfuchao.com/pic/20200427232749.png" alt="" loading="lazy"></figure>
+<p><strong>4.仿真：行为仿真、功能仿真与时序仿真、静态时序分析</strong></p>
+<figure data-type="image" tabindex="5"><img src="https://cdn.wangfuchao.com/pic/20200427232909.png" alt="" loading="lazy"></figure>
+<p><strong>5.</strong> <strong>编程下载</strong></p>
+<p>​    如果编译、综合、布线/适配和行为仿真、功能仿真、时序仿真等过程都没有发现问题，即满足原设计的要求，则可以将由FPGA/CPLD布线/适配器产生的配置/下载文件通过编程器或下载电缆载入目标芯片FPGA或CPLD中。</p>
+<p><strong>6.</strong> <strong>硬件测试</strong></p>
+<h2 id="asic及其设计流程">ASIC及其设计流程</h2>
+<figure data-type="image" tabindex="6"><img src="https://cdn.wangfuchao.com/pic/20200427233243.png" alt="" loading="lazy"></figure>
+<p><strong>ASIC设计简介</strong></p>
+<figure data-type="image" tabindex="7"><img src="https://cdn.wangfuchao.com/pic/20200427233307.png" alt="" loading="lazy"></figure>
+<p><strong>ASIC设计一般流程简述</strong></p>
+<figure data-type="image" tabindex="8"><img src="https://cdn.wangfuchao.com/pic/20200427233353.png" alt="" loading="lazy"></figure>
+<h1 id="第二章-fpga与cpld的结构原理">第二章 FPGA与CPLD的结构原理</h1>
+<p><strong>基本原理</strong></p>
+<figure data-type="image" tabindex="9"><img src="https://cdn.wangfuchao.com/pic/20200428230025.png" alt="" loading="lazy"></figure>
+<p><strong>作图表示</strong></p>
+<figure data-type="image" tabindex="10"><img src="https://cdn.wangfuchao.com/pic/20200428231229.png" alt="" loading="lazy"></figure>
+<h2 id="四种spld器件的区别"><strong>四种SPLD器件的区别</strong></h2>
+<table>
+<thead>
+<tr>
+<th><strong>器  件</strong></th>
+<th><strong>与 阵 列</strong></th>
+<th><strong>或 阵 列</strong></th>
+<th><strong>输出电路</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PROM</strong></td>
+<td><strong>固定</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+</tr>
+<tr>
+<td><strong>PLA</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+</tr>
+<tr>
+<td><strong>PAL</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+<td><strong>固定</strong></td>
+</tr>
+<tr>
+<td><strong>GAL</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+<td><strong>可组态</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="prom结构原理"><strong>PROM结构原理</strong></h3>
+<figure data-type="image" tabindex="11"><img src="https://cdn.wangfuchao.com/pic/20200428232055.png" alt="" loading="lazy"></figure>
+<p><strong>例：半加器</strong></p>
+<figure data-type="image" tabindex="12"><img src="https://cdn.wangfuchao.com/pic/20200428232203.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="13"><img src="https://cdn.wangfuchao.com/pic/20200428232208.png" alt="" loading="lazy"></figure>
+<p>​</p>
+<p>​</p>
+<h3 id="pla结构原理"><strong>PLA结构原理</strong></h3>
+<figure data-type="image" tabindex="14"><img src="https://cdn.wangfuchao.com/pic/20200428232638.png" alt="" loading="lazy"></figure>
+<h3 id="pal结构原理"><strong>PAL结构原理</strong></h3>
+<figure data-type="image" tabindex="15"><img src="https://cdn.wangfuchao.com/pic/20200428232743.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="16"><img src="https://cdn.wangfuchao.com/pic/20200428232749.png" alt="" loading="lazy"></figure>
+<h3 id="gal结构原理">GAL结构原理</h3>
+<p>General Array Logic Device</p>
+<p>与阵列 + 输出逻辑宏单元（OLMC）</p>
+<p><strong>优点</strong>:</p>
+<p>通用性好。宏单元可根据需要任意组态，当输入引脚不够用时还可将OLMC组态为输入端，因而使用十分灵活.</p>
+<p>采用UVMOS或EECMOS工艺，可重复使用</p>
+<p><strong>不足:</strong></p>
+<p>※ 只能作为同步时序电路使用，且只能是外加时钟；</p>
+<p>※ 各触发器只能同时置位和清零；</p>
+<p>※ 每个宏单元只有一条向与阵列反馈的通道；</p>
+<p>※ 每个OLMC中或门的输入端是固定的。</p>
+<figure data-type="image" tabindex="17"><img src="https://cdn.wangfuchao.com/pic/20200428233122.png" alt="" loading="lazy"></figure>
+<h4 id="1寄存器模式">（1）寄存器模式</h4>
+<figure data-type="image" tabindex="18"><img src="https://cdn.wangfuchao.com/pic/20200428233234.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="19"><img src="https://cdn.wangfuchao.com/pic/20200428233239.png" alt="" loading="lazy"></figure>
+<h4 id="2复合模式">（2）复合模式</h4>
+<figure data-type="image" tabindex="20"><img src="https://cdn.wangfuchao.com/pic/20200428235201.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="21"><img src="https://cdn.wangfuchao.com/pic/20200428235206.png" alt="" loading="lazy"></figure>
+<h4 id="3简单模式">（3）简单模式</h4>
+<figure data-type="image" tabindex="22"><img src="https://cdn.wangfuchao.com/pic/20200428235229.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="23"><img src="https://cdn.wangfuchao.com/pic/20200428235233.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="24"><img src="https://cdn.wangfuchao.com/pic/20200428235302.png" alt="" loading="lazy"></figure>
+<h2 id="cpld结构原理">CPLD结构原理</h2>
+<p><strong>MAX 7000S器件的内部结构</strong></p>
+<figure data-type="image" tabindex="25"><img src="https://cdn.wangfuchao.com/pic/20200501233443.png" alt="" loading="lazy"></figure>
+<h2 id="fpga结构原理">FPGA结构原理</h2>
+<p><strong>FPGA器件的内部结构示意图</strong></p>
+<figure data-type="image" tabindex="26"><img src="https://cdn.wangfuchao.com/pic/20200501233502.png" alt="" loading="lazy"></figure>
+<p><strong>典型FPGA的结构</strong>  <strong>XC4000器件的CLB结构</strong></p>
+<figure data-type="image" tabindex="27"><img src="https://cdn.wangfuchao.com/pic/20200501233558.png" alt="" loading="lazy"></figure>
+<p><strong>Altera的Cyclone IV器件结构</strong></p>
+<p><strong>Cyclone IV器件的LE结构</strong></p>
+<figure data-type="image" tabindex="28"><img src="https://cdn.wangfuchao.com/pic/20200501233626.png" alt="" loading="lazy"></figure>
+<h2 id="cpldfpga的编程与配置">CPLD/FPGA的编程与配置</h2>
+<p>（1）基于电可擦除存储单元的EEPROM或Flash技术。</p>
+<p>（2）基于SRAM查找表的编程单元。</p>
+<p>（3）基于一次性可编程反熔丝编程单元。</p>
+<figure data-type="image" tabindex="29"><img src="https://cdn.wangfuchao.com/pic/20200501234150.png" alt="" loading="lazy"></figure>
+<p><mark>CPLD在系统编程</mark></p>
+<p><mark>FPGA配置方式</mark></p>
+<p><strong>Altera的FPGA器件配置方式</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>方  式</strong></th>
+<th style="text-align:center"><strong>说</strong>  <strong>明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PS**（Passive Serial）模式**</td>
+<td style="text-align:center">被动串行，由外部主机（MAX  II芯片或微处理器）控制配置过程</td>
+</tr>
+<tr>
+<td style="text-align:center">AS**（Active Serial）**</td>
+<td style="text-align:center">主动串行，用串行配置器件（如EPCS1，EPCS4，EPCS16）配置</td>
+</tr>
+<tr>
+<td style="text-align:center">FPP**（Fast Passive Parallel）**</td>
+<td style="text-align:center">快速被动并行，使用增强型配置器件或并行同步微处理器接口进行配置</td>
+</tr>
+<tr>
+<td style="text-align:center">AP**（Active Parallel）**</td>
+<td style="text-align:center">主动并行</td>
+</tr>
+<tr>
+<td style="text-align:center">PPS**（Passive Parallel Synchronous）**</td>
+<td style="text-align:center">被动并行同步，使用并行同步微处理器接口进行配置</td>
+</tr>
+<tr>
+<td style="text-align:center">PPA**（Passive Parallel Asynchronous）**</td>
+<td style="text-align:center">被动并行异步，使用并行异步微处理器接口进行配置</td>
+</tr>
+<tr>
+<td style="text-align:center">JTAG<strong>模式</strong></td>
+<td style="text-align:center">使用下载电缆通过JTAG接口进行配置</td>
+</tr>
+</tbody>
+</table>
+<h1 id="第3章-组合电路的vhdl设计">第3章 组合电路的VHDL设计</h1>
+<h2 id="vhdl程序结构"><strong>VHDL程序结构</strong></h2>
+<figure data-type="image" tabindex="30"><img src="https://cdn.wangfuchao.com/pic/20200502122143.png" alt="" loading="lazy"></figure>
+<h2 id="vhdl语法小结">VHDL语法小结</h2>
+<p><mark>VHDL 库</mark><strong>:</strong> 使用<strong>LIBRARY语句打开</strong></p>
+<p>​      常用的有：<strong>IEEE、STD、WORK等</strong></p>
+<p><mark>程 序 包</mark><strong>：需要时可使用USE语句打开，常用的包括：</strong></p>
+<p>​      <strong>STANDARD、TEXTIO、STD_LOGIC_1164、</strong></p>
+<p>​      <strong>STD_LOGIC_ARITH、STD_LOGIC_SIGNED、</strong></p>
+<p>​      <strong>STD_LOGIC_UNSIGNED</strong> 等</p>
+<p><mark>实  体</mark><strong>: ENTITY name is</strong></p>
+<p>​             …</p>
+<p>​             END ENTITY name;</p>
+<p><mark>结 构 体</mark><strong>: ARCHITECTURE name OF entity_ name is</strong></p>
+<p>​                  …</p>
+<p>​                 END ARCHITECTURE name</p>
+<p><mark>端口模式</mark><strong>: IN、OUT、INOUT、BUFFER</strong></p>
+<p><mark>数据类型</mark><strong>:  bit、std_logic、integer、boolean等</strong></p>
+<h2 id="entity实体描述">ENTITY实体描述</h2>
+<p>实体使用<mark>实体说明</mark>来描述。实体说明描述的是一个设计的外貌，即描述实体的外部接口情况以及实体内的类属参数等。</p>
+<h3 id="实体说明的格式"><strong>实体说明的格式：</strong></h3>
+<blockquote>
+<p><mark>ENTITY</mark> &lt;实体名&gt; <mark>IS</mark></p>
+<p>​    [参数说明部分];</p>
+<p>​    [端口说明部分]；</p>
+<p><mark>END</mark> [<mark>ENTITY</mark>] &lt;实体名&gt; ;</p>
+</blockquote>
+<p>实体说明以“<strong>ENTITY &lt;实体名&gt; IS</strong>” 开始，至&quot; <strong>END ENTITY &lt;实体名&gt;</strong>” 结束。</p>
+<p><strong>参数说明</strong>主要为设计实体指定参数，如端口宽度、器件延迟时间等；</p>
+<p><strong>端口说明</strong>描述的是设计实体和外部的接口，具体说就是对<mark>端口名称、端口模式和端口数据类型</mark>进行说明。</p>
+<figure data-type="image" tabindex="31"><img src="https://cdn.wangfuchao.com/pic/20200502000143.png" alt="" loading="lazy"></figure>
+<p>【程序】</p>
+<blockquote>
+<p><mark>ENTITY</mark> mux21 <mark>IS</mark></p>
+<p><strong>PORT</strong>( a, b :  <strong>IN</strong> BIT ;</p>
+<p>​                  s :  <strong>IN</strong> BIT;</p>
+<p>​                  y : <strong>OUT</strong> BIT) ;</p>
+<p><mark>END ENTITY</mark> mux21 ;</p>
+</blockquote>
+<p>(1)<mark>端口名称</mark>：输入输出信号的名称，在实体中必须是唯一的。</p>
+<p>(2)<mark>端口模式</mark>：说明信号的方向，有以下几种模式：</p>
+<p><mark>IN</mark>   输入信号；</p>
+<p><mark>OUT</mark>   输出信号；</p>
+<p><mark>INOUT</mark>  双向信号；</p>
+<p><mark>BUFFER</mark> 输出信号，但可在内部反馈使用(缓冲)；</p>
+<blockquote>
+<p>​     BUFFER是INOUT的子集，但作输入用时，信号不是由外部驱动，而是从输出反馈得到。</p>
+</blockquote>
+<p>(3)<mark>端口数据类型</mark>：端口信号的取值类型</p>
+<blockquote>
+<p>​    明确地指定和严格地定义端口信号的取值类型是VHDL的重要特点, 即所谓的强数据类型，是学习VHDL应特别注意之处.</p>
+</blockquote>
+<h3 id="数据类型">数据类型</h3>
+<p><strong>VHDL中常见的数据类型有以下几种：</strong></p>
+<p><mark>BIT</mark>        位类型，取值'0','1' ;<strong><mark>在VHDL中，逻辑位0或者1的表达必须加单引号，否则VHDL综合器会将其解释成整数数据类型INREGER</mark></strong></p>
+<p><mark>BIT_VECTOR</mark>    位向量类型，是BIT的组合;</p>
+<p><mark>STD_LOGIC</mark>     工业标准的逻辑位类型，取值0 '0','1','X','Z'等九种;</p>
+<p><mark>STD_LOGIC_VECTOR</mark> 工业标准的逻辑位向量类型，是STD_ LOGIC的组合</p>
+<p><mark>INTEGER</mark>      整数类型，可用作循环的指针或常数;</p>
+<p><mark>BOOLEAN</mark>      布尔类型，取值FALSE、TRUE.</p>
+<figure data-type="image" tabindex="32"><img src="https://cdn.wangfuchao.com/pic/20200502115124.png" alt="" loading="lazy"></figure>
+<h2 id="architecture-结构体描述">Architecture 结构体描述</h2>
+<p>​    结构体(Architecture )描述的是实体内部的逻辑功能。  在电路上相当于器件的内部电路结构.</p>
+<figure data-type="image" tabindex="33"><img src="https://cdn.wangfuchao.com/pic/20200502115359.png" alt="" loading="lazy"></figure>
+<p>【结构体程序】</p>
+<blockquote>
+<p><mark>ARCHITECTURE</mark> one <mark>OF</mark> mux21 <mark>IS</mark></p>
+<p><mark>BEGIN</mark></p>
+<p>y &lt;= a WHEN s = ‘0' ELSE</p>
+<p>​     b;</p>
+<p><mark>END ARCHITECTURE</mark> one;</p>
+</blockquote>
+<h3 id="结构体的基本格式"><strong>结构体的基本格式：</strong></h3>
+<blockquote>
+<p><mark>ARCHITECTURE</mark> &lt;<strong>结构体名&gt;</strong> <mark>OF</mark> &lt;<strong>实体名&gt;</strong> <mark>IS</mark></p>
+<p>[<strong>结构体说明部分]</strong></p>
+<p><mark>BEGIN</mark></p>
+<p>&lt;<strong>功能描述语句&gt;</strong></p>
+<p><mark>END [ARCHITECTURE]</mark> &lt;<strong>结构体名&gt; ;</strong></p>
+</blockquote>
+<p>（<strong>1）OF后的实体名应与实体说明中的实体名一致；</strong></p>
+<p>（<strong>2）功能描述语句是结构体中的主要部分，用于描述所实现实体的功能</strong></p>
+<p>四种不同类型的<strong>并行语句：</strong></p>
+<p><strong>进程语句</strong></p>
+<p><strong>进程语句</strong></p>
+<p><strong>子程序调用语句</strong></p>
+<p><strong>元件例化语句</strong></p>
+<p>（<strong>3）结构体说明部分是对结构体的功能描述语句中将要用到的信号、数据类型、常数、元件、函数和过程等加以说明。</strong></p>
+<h3 id="库-程序包"><strong>库、程序包</strong></h3>
+<p>VHDL的基本结构由前述的设计实体和结构体组成，但实际中的VHDL程序除上述两个基本部分以外通常还包括另外三个部分：<mark>库</mark>、<mark>程序包</mark>和配置</p>
+<p><mark>库</mark>：主要用来存放已经编译的实体、结构体、程序包等。</p>
+<p><mark>程序包</mark>：主要用来存放各个设计都能共享的数据类型、子程序、常数和元件等。</p>
+<h4 id="库和程序包的语句格式">库和程序包的语句格式</h4>
+<blockquote>
+<p>VHDL<strong>一个库中的设计单元可以用作其他设计的资源；一个设计可以使用多个库中的设计单元。</strong></p>
+<p>当一个设计要使用<strong>库中的设计单元时：</strong></p>
+<p>首先要在每个设计的开头说明要引用的<strong>库；</strong></p>
+<p>然后指明要使用库中的哪一个设计单元（<strong>程序包）。</strong></p>
+</blockquote>
+<p>（<strong>1）库说明语句格式：</strong> <mark>library</mark> &lt;<strong>库名&gt;；</strong></p>
+<p>（<strong>2）程序包语句说明格式：</strong> <mark>use</mark> &lt;<strong>库名&gt;.&lt;程序包名&gt;.all；</strong></p>
+<blockquote>
+<p>all表示使用该程序包中的所有项目</p>
+</blockquote>
+<p>举例如下</p>
+<blockquote>
+<p><strong>LIBRARY</strong> IEEE;</p>
+<p><strong>USE</strong> IEEE.STD_LOGIC_1164.<strong>ALL</strong>;</p>
+<p><strong>ENTITY</strong> example <strong>IS</strong></p>
+<p><strong>PORT</strong> ( d: <strong>IN</strong> STD_ LOGIC_VECTOR (15 <strong>DOWNTO</strong> 0);</p>
+<p>​    clk, reset, oe: <strong>IN</strong> STD_LOGIC;</p>
+<p>​    q1: <strong>OUT</strong> STD_LOGIC_VECTEOR (15 <strong>DOWNTO</strong> 0);</p>
+<p>​    q2: <strong>INOUT</strong> STD_LOGIC_VECTOR (15 <strong>DOWNTO</strong> 0);</p>
+<p>​     int: <strong>BUFFER</strong> STD_LOGIC;</p>
+<p>​     opt: <strong>OUT</strong> STD_LOGIC );</p>
+<p><strong>END</strong> example;</p>
+</blockquote>
+<h2 id="configuration配置">CONFIGURATION<strong>配置</strong></h2>
+<p><strong>配置可以把特定的结构体指定给一个确定的实体</strong></p>
+<p><strong>例如当对实体进行仿真时可为同一实体配置不同的结构体以比较其差别。</strong></p>
+<p><mark><strong>配置语句的一般格式如下：</strong></mark></p>
+<blockquote>
+<p><mark>CONFIGURATION</mark> &lt;<strong>配置名&gt;</strong> <mark>OF</mark> &lt;<strong>实体名&gt;</strong> <mark>IS</mark></p>
+<p><mark>FOR</mark> &lt;<strong>选配结构体名&gt;</strong></p>
+<p><mark>END FOR</mark>;</p>
+<p><mark>END</mark> <strong>[&lt;配置名&gt;]</strong>;</p>
+</blockquote>
+<figure data-type="image" tabindex="34"><img src="https://cdn.wangfuchao.com/pic/20200502122046.png" alt="" loading="lazy"></figure>
+<h2 id="vhdl语言要素">VHDL语言要素</h2>
+<p>也即是VHDL<strong>自己的文字规则</strong></p>
+<h3 id="1标识符">1.标识符</h3>
+<p><strong>标识符主要用来为常数、变量、信号、端口、子程序和参数等命名</strong></p>
+<p><strong>其规则如下：</strong></p>
+<blockquote>
+<p>有效的字符：包括26个大小写英文字母，数字包括0～9 以及下划线“_”；</p>
+<p>任何标识符必须<strong>以英文字母开头</strong>；</p>
+<p>下划线“_”的前后必须有<strong>英文字母或数字</strong>；</p>
+<p>标识符中的英语字母不分大小写。</p>
+</blockquote>
+<p>例：  Decoder_1 , FFT, sig_n, Not_ACK 是正确的</p>
+<p>​        而 Decoder_1 , 2FFT, sig#n，return 是错误的。</p>
+<h3 id="2数字">2.数字</h3>
+<p>（1）整数：整数都是十进制的数，<br>
+如：5，678，0，156E2(=15600)，45_234_287(=45234287)</p>
+<p>（2）实数：实数也都是十进制的数，但必须带有小数点，<br>
+如：1.335， 88_670_551.453_909(=88670551.453909)，1.0，44.99E-2(=0.4499)</p>
+<p>（3）以数值基数表示的数：<br>
+用这种方式表示的数由五部分组成：基 # 整数 # [指数]</p>
+<p>第一部分：用十进制数标明数值进位的基数；<br>
+第二部分：数值隔离符“#”；<br>
+第三部分：表达的数值；<br>
+第四部分：指数隔离符“#” ；<br>
+第五部分：用十进制数表示的指数部分，若为0可省略不写。</p>
+<blockquote>
+<p>例如：</p>
+<p>10#170# ;             -- (表示第三部分为十进制数，等于 170)</p>
+<p>16#FE#;               -- (表示第三部分十六进制数 ，等于 254)</p>
+<p>2#1111_1110#;     -- (表示第三部分为二进制数，等于 254)</p>
+<p>8#376#;                -- (表示第三部分为八进制数，等于 254)</p>
+<p>16#E#E1 ;            -- (表示十六进制数，等于14×16的一次方，等于224)</p>
+</blockquote>
+<h3 id="3字符和字符串">3.字符和字符串</h3>
+<p><strong>（1） 字符是用单引号括起来的ASCⅡ码</strong><br>
+一般情况下VHDL对字母的大小写不敏感，但对字符的大小写是敏感的，例：‘A’ 和 ‘a’ 是不同的。<br>
+<strong>（2） 字符串是用双引号括起来的字符序列</strong><br>
+在VHDL中字符串常用来作为说明文字出现。<br>
+例：“it is time out”, “ ERROR”， “Both S and Q equal to 1”<br>
+注意：“a” 和 ‘a’是不同的</p>
+<h3 id="4位串">4.位串</h3>
+<p><strong>位串是用双引号括起来的数字序列，数字序列前面加上一个基数说明符：</strong></p>
+<blockquote>
+<p>B：二进制基数符号；<br>
+O：八进制基数符号；<br>
+X：十六进制基数符号(0～F)；</p>
+<p>采用位串的优点是为了增加源代码的可读性。</p>
+</blockquote>
+<p>例：B&quot;1_1101_1110&quot;           -- 二进制数数组，位矢数组长度是9<br>
+O&quot;15&quot;                            -- 八进制数数组，位矢数组长度是6<br>
+X&quot;AD0&quot;                         -- 十六进制数数组，位矢数组长度是12<br>
+B&quot;101_010_101_010&quot;  -- 二进制数数组，位矢数组长度是12<br>
+&quot;0AD0&quot;                       -- 表达错误，缺X</p>
+<h3 id="5注释">5.注释</h3>
+<p>注释语句用**“--“** 开始到本行结束的一段文字来进行一段的描述；<br>
+注释不是设计功能描述的一部分，所以不会被编译。</p>
+<h2 id="数据对象">数据对象</h2>
+<p>VHDL是一种硬件描述语言，硬件电路的工作过程实际上是信号的传输、存储和处理的过程，所以<mark>VHDL最基本的描述对象是常量和信号</mark>。为了便于描述，还定义了另外一类数据对象：<mark>变量</mark>。</p>
+<h3 id="1常量constant">1.常量（CONSTANT）</h3>
+<blockquote>
+<p>常量是指在设计实体中不会发生变化的值。<br>
+常量定义的一般表述：<br>
+CONSTANT  常量名：<a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>:= 表达式 ；</p>
+</blockquote>
+<p><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a>按住Ctrl然后单击即可跳转</p>
+<p>例如： constant a，b ： INTEGER := 2；<br>
+constant VCC  ： REAL :＝ 3.3；</p>
+<p><strong>注意：</strong></p>
+<p><strong>常量一旦被赋值就不能再改变；</strong></p>
+<p><strong>常量可以在程序包、实体说明、结构体和进程的说明区域进行说明；</strong></p>
+<p><strong>常量所赋的值应与其所定义的数据类型一致，否则出错。</strong></p>
+<h3 id="2变量variable">2.变量（VARIABLE）</h3>
+<blockquote>
+<p>变量主要用于对暂时数据进行存储，它不能将信息带出对它作出定义的当前单元。<br>
+变量定义的一般格式：<br>
+VARIABLE 变量名：<a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a> := 初始值;</p>
+</blockquote>
+<p>例：   VARIABLE a :  std_logic;<br>
+VARIABLE b, c : integer := 2;<br>
+VARIABLE count1,count2,count3 : integer range 0 to 255 := 0;<br>
+例中定义a为标准逻辑位变量，b, c为整数型变量，初始值为2等。</p>
+<p><strong>变量的赋值</strong></p>
+<p>变量可以被连续地进行赋值，变量的赋值采用的符号是 “:=”，格式如下：<br>
+变量名  :=  表达式；</p>
+<p>例：   a :=  “1010101” ;     -- 位矢量赋值<br>
+b :=  ‘0’ ;                   -- 位赋值<br>
+x :=  100.0 ;              -- 实数赋值</p>
+<p><strong>注意：</strong><br>
+1）赋值语句右边的表达式必须是一个与目标变量具有<mark>相同数据类型</mark>的数值。<br>
+2）变量是一个<mark>局部量</mark>，只能在进程和子程序中使用。<br>
+3）变量的赋值是一种理想化的数据传输，是<mark>立即发生的</mark>，不存在任何延时的行为。</p>
+<h3 id="3信号signal">3.信号（SIGNAL）</h3>
+<blockquote>
+<p>信号是描述硬件系统的基本数据对象，它是设计实体中并行语句模块间动态交换数据的手段。在物理上信号对应着硬件设计中的一条连接线。<br>
+信号定义语句格式：<br>
+SIGNAL 信号名： <a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a> := 初始值 ；</p>
+</blockquote>
+<p>例：SIGNAL clk : std_logic := ‘0’;<br>
+SIGNAL a : integer range 0 to 15;<br>
+SIGNAL data : std_logic_vector(15 downto 0);<br>
+信号的初始值不是必须的，而且仅在VHDL的行为仿真中有效，<strong>信号的使用和定义范围是实体、结构体和程序包。</strong></p>
+<p><mark>信号赋值格式: 信号名 &lt;= 表达式；</mark><br>
+例：   x &lt;= 9;<br>
+y &lt;= x;<br>
+在进程中，可以允许同一信号有多个赋值源，即在同一进程中存在多个同名的信号被赋值，其结果只是最后的赋值语句被启动。</p>
+<pre><code class="language-vhdl">……
+SIGNAL a,b,c,y,z: integer ;
+  ……
+PROCESS(a,b,c )
+  BEGIN
+     y &lt;= a*b;         -- 不对y进行赋值。
+     z &lt;= c-b;
+     y &lt;= b;             -- y的最后赋值。
+END PROCESS;
+  ……
+
+</code></pre>
+<hr>
+<h3 id="信号与变量赋值语句功能的比较"><strong>信号与变量赋值语句功能的比较</strong></h3>
+<blockquote>
+<p>变量(VARIABLE)<br>
+基本用法：在进程中作为局部数据存储单元使用。<br>
+适用范围：只能在所定义的进程中使用。	<br>
+行为特性：赋值是没有延迟的。<br>
+在进程中是立即赋值。</p>
+</blockquote>
+<blockquote>
+<p>信号(SIGNAL)<br>
+基本用法：在电路中作为信号连线使用 。<br>
+适用范围：在整个结构体内的任何地方都能适用。<br>
+行为特性：赋值具有一定的延迟 。<br>
+<strong>在进程中，只在进程的最后才对信号赋值。</strong></p>
+</blockquote>
+<h2 id="数据类型data-types">数据类型(DATA TYPES)</h2>
+<p>VHDL的强类型特性主要体现在以下几个方面：</p>
+<blockquote>
+<p>每一对象只能具有一个数据类型且只能具有那个数据类型的值.</p>
+<p>对某对象进行操作的类型必须与该对象的类型相匹配。</p>
+<p>不同类型之间的数据不能直接带入，即使数据类型相同而位长不同也不能进行带入。</p>
+</blockquote>
+<p>VHDL中的数据类型可分为五大类：</p>
+<blockquote>
+<p>标量类型：是最基本的数据类型，通常用于描述一个单值数据对象。标量类型包括：实数类型、整数类型、枚举类型和时间类型。<br>
+复合类型：由细小的数据类型复合而成，如可由标量类型复合而成。复合类型主要有数组型和记录型。<br>
+子类型：是上述基本类型的子集，是对已有的数据类型加以限制。<br>
+文件类型：不同类型的数据和数据名组织在一起形成新的数据对象。<br>
+存取类型：为数据对象提供存取方式。</p>
+</blockquote>
+<p>​       上述五大类数据类型又可分成在现成程序包中可以随时获得的<mark>预定义数据类型</mark>和<mark>用户自定义数据类型</mark>两类。预定义数据类型是VHDL中最常用、最基本的数据类型，这些数据类型都已在VHDL的标准程序包Standard和std_logic_1164及其它的标准程序包中作了定义,可在设计中随时调用。</p>
+<h3 id="1-vhdl的主要预定义数据类型">1. VHDL的主要预定义数据类型</h3>
+<blockquote>
+<p>VHDL的预定义数据类型都是在VHDL标准程序包STANDARD中定义的。</p>
+</blockquote>
+<p><strong>（1）布尔(BOOLEAN)数据类型</strong>：属于枚举型，取值为false和true。</p>
+<p><strong>（2）位(BIT)数据类型</strong>：属于枚举型，取值只能是1和0。</p>
+<p><strong>（3）位矢量(BIT_VECTOR)数据类型</strong>：是BIT的数组，使用位矢量必须注明位宽。例：signal a: bit_vector(7 downto 0)；</p>
+<p><strong>（4）字符(CHARACTER)数据类型</strong>：字符类型通常用单引号引起来。如：‘a’ 。<mark>字符类型区分大小写</mark>，这一点和标识符的大小写是不同的。</p>
+<p><strong>（5）整数(INTEGER)数据类型</strong>：正整数、负整数和零。可以使用预定义的运算操作符，如“＋”、“－”等进行算术运算。<br>
+在VHDL中，整数的取值范围是－2147483647～＋2147483647<br>
+仿真时：将其作为有符号数处理。综合时：作为无符号数处理。<br>
+<strong>自然数(NATURAL)数据类型, 正整数(POSITIVE)数据类型</strong></p>
+<p><strong>（6）实数(REAL)数据类型</strong>：<br>
+类似于数学中的实数，或称为浮点数，通常情况下实数类型仅能用于VHDL的仿真，综合器一般不支持实数。</p>
+<p><strong>（7）时间(TIME)数据类型</strong><br>
+VHDL中唯一的预定义物理类型是时间。完整的时间类型包括整数和物理量单位两部分，整数和单位之间至少留一个空格。<br>
+例：55 ms, 20 ns等。</p>
+<h3 id="2ieee预定义标准逻辑位与矢量">2.IEEE预定义标准逻辑位与矢量</h3>
+<p><strong>（1）标准逻辑位（std_logic）数据类型</strong><br>
+<strong>（2）标准逻辑矢量(std_logic_vector)数据类型</strong><br>
+std_logic_vector是std_logic的数组形式。</p>
+<pre><code class="language-vhdl">因为是ieee的预定义数据类型，使用时必须先打开ieee库。
+即：
+    library ieee;
+    use ieee.std_logic_1164.all;
+</code></pre>
+<blockquote>
+<p>std_logic是一个9值的逻辑。其取值为：<br>
+U:未初始化状态； X: 不定态；    0: 逻辑0；    1: 逻辑1；<br>
+Z: 高阻态；          W: 弱不定态；L: 弱逻辑0；H: 弱逻辑1；<br>
+-: 无关态；</p>
+</blockquote>
+<h3 id="3其他预定义标准数据类型">3.其他预定义标准数据类型</h3>
+<p>Synopsys公司在IEEE库中加入的程序包STD_LOGIC_ARITH中定义了3种数据类型，下面是其中常用的2种：</p>
+<p><strong>（1）无符号数据类型(UNSIGNED TYPE)</strong><br>
+UNSIGNED数据类型代表一个无符号的数值，以二进制数表示，二进制数的左边为最高位。</p>
+<p><strong>（2）有符号数据类型(SIGNED TYPE)</strong><br>
+SIGNED数据类型代表一个有符号的数值，综合器将其解释为<strong>补码</strong>，最高位为符号位。</p>
+<pre><code class="language-vhdl">使用上述数据类型时，应作如下声明：
+library ieee;
+use ieee.std_logic_arith.all;
+</code></pre>
+<h3 id="4用户自定义数据类型">4.用户自定义数据类型</h3>
+<p>用户自定义数据类型是用类型定义语句实现的，格式如下：</p>
+<p><mark>（1）TYPE语句用法：</mark></p>
+<pre><code class="language-vhdl">    TYPE 数据类型名 IS 数据类型定义 ；
+ 
+    上述格式中的数据类型名由设计者自定；数据类型定义部分用来描述所定义元素的表达方式和表达内容。
+</code></pre>
+<blockquote>
+<p>例： type week is (sun,mon,tue,wed,thu,fri,sat);</p>
+</blockquote>
+<p><mark>（2）SUBTYPE语句用法：</mark><br>
+SUBTYPE是TYPE所定义的数据类型的一个子集，它满足原数据类型的所有约束条件，原数据类型称为基本数据类型，SUBTYPE 格式如下：</p>
+<pre><code class="language-vhdl">SUBTYPE 子类型名 IS 基本数据类型 range 约束范围；
+
+上述格式中的子类型名由设计者自定；基本数据类型必须是前面已有过type定义的类型。
+</code></pre>
+<blockquote>
+<p>例： subtype dig is integer range 0 to 9;<br>
+其中，integer是标准程序包中已定义过的数据类型，子类型只是把integer约束到只含10个值的数据类型。</p>
+</blockquote>
+<p><mark>(3)自定义数据类型举例</mark></p>
+<p><strong>1.枚举数据类型</strong>：</p>
+<p>​    VHDL中的枚举数据类型是一种特殊的数据类型，是用文字符号来表示一组实际的二进制数。例如：</p>
+<pre><code class="language-vhdl"> type m_state is (state1, state2, state3, state4, state5 );
+
+ signal p_state,n_state : m_state;
+</code></pre>
+<p>枚举数据类型也可以使用数值来定义，如：</p>
+<pre><code class="language-vhdl"> type my_logic is ( ‘1’  , ’z’  ,  ‘u’  , ’0’ );     
+</code></pre>
+<blockquote>
+<p>​    在综合过程中，枚举类型文字元素的编码通常是自动的，编码顺序是默认的，一般将第一个枚举量（最左边的量）编码为0，以后的依次加1。前例中的默认编码值如下：</p>
+<p>state1 ＝’000’；   state3 ＝’010’；  state5 ＝’100’；</p>
+<p>state2 ＝’001’；   state4 ＝’011’；</p>
+</blockquote>
+<p><strong>2.数组类型：</strong></p>
+<p>​        数组类型属复合类型，是将一组具有相同数据类型的元素集合在一起，作为一个数据对象来处理的数据类型。数组可以是一维数组或多维数组。</p>
+<pre><code class="language-vhdl">  语句格式如下：
+      TYPE 数组名 IS ARRAY (数组范围) OF 数据类型 ；
+</code></pre>
+<pre><code class="language-vhdl">例： type stb is array (7 downto 0) of std_logic;该数组有8个元素，其下标排列是7、6、…1、0。
+    
+     type data_bus is array (0 to 7) of bit;
+</code></pre>
+<p>​    <strong>对数组的赋值有两种方法：一是对整个数组进行一次赋值；二是按照下标对每一个数组元素进行赋值。例：</strong></p>
+<pre><code class="language-vhdl">type data_bus is array (0 to 7) of bit;
+signal a:data_bus;
+整体赋值：  a &lt;= “01000111”;
+分别赋值：  a(0) &lt;= ‘0’;
+           a(1) &lt;= ‘1’;
+           a(2) &lt;= ‘0’;
+           a(3) &lt;= ‘0’;
+           a(4) &lt;= ‘0’;
+           a(5) &lt;= ‘1’;
+           a(6) &lt;= ‘1’;
+           a(7) &lt;= ‘1’;                         
+</code></pre>
+<p><strong>3.记录类型：</strong></p>
+<p>将不同数据类型的元素组织在一起，而形成新的对象。语句格式如下：</p>
+<blockquote>
+<p><strong>TYPE</strong> 记录类型名 <strong>IS RECORD</strong><br>
+记录元素名1：数据类型名；<br>
+记录元素名2：数据类型名；<br>
+……<br>
+<strong>END RECORD;</strong></p>
+</blockquote>
+<p><strong>下面是记录类型定义的一个例子：</strong></p>
+<pre><code class="language-vhdl">type c_time is record
+  year  :integer range 0 to 3000;
+  month :integer range 1 to 12;
+  date  :integer range 1 to 31;
+  enable:bit;
+  data  :std_logic_vector(15 downto 0);
+end record;
+signal number: c_time;
+</code></pre>
+<p><strong>记录元素的赋值：</strong></p>
+<p>对于记录类型的对象的赋值和数组类似，可以对其进行整体赋值，也可分别赋值.</p>
+<p>一个记录的每一个元素要由它的记录元素名来进行访问。从记录类型的对象中提取记录元素时应使用==“.”==。</p>
+<pre><code class="language-vhdl">    对记录元素整体赋值：
+    number &lt;= (2014，10，10，‘1’，data_in)；
+    对记录元素分别赋值：
+    number.year &lt;= 2014;
+    number.month &lt;= 10;
+    number.date &lt;= 10;
+    number.enable &lt;= ‘1’;
+    number.data &lt;= data_in;    
+</code></pre>
+<h3 id="5数据类型的转换">5.数据类型的转换</h3>
+<p>在VHDL语言中，数据类型的定义是相当严格的，不同的数据类型之间不能进行运算和直接代入。<br>
+为了实现正确的赋值操作，有时需要将带入的数据进行类型转换。<br>
+数据类型转换函数通常由程序包来提供。</p>
+<p>下表列出了常用的数据类型转换函数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函   数 名</th>
+<th style="text-align:left">功    能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">●<strong>std_logic_1164 程序包</strong>   to_std_logic_vector   to_bit_vector   to_std_logic   to_bit</td>
+<td style="text-align:left">由bit_vector 转换为std_logic_vector<br/>由std_logic_vector 转换为bit_vector<br/>由bit 转换为std_logic<br/>由std_logic 转换为bit</td>
+</tr>
+<tr>
+<td style="text-align:left">●<strong>std_logic_arith 程序包</strong>   conv_std_logic_vector    <br /> conv_integer        <br />conv_signed   <br />conv_unsigned</td>
+<td style="text-align:left">由integer、unsigned、signed 转换为    std_logic_vector <br />由unsigned、signed 转换为integer <br /> 由integer、unsigned 转换为 signed  由integer、signed 转换为 unsigned</td>
+</tr>
+<tr>
+<td style="text-align:left">●<strong>std_logic_unsigned程序包</strong>     conv_integer</td>
+<td style="text-align:left">由<strong>std_logic_vector</strong>  转换为<strong>integer</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">●<strong>std_logic_signed 程序包</strong>    <br /> conv_integer</td>
+<td style="text-align:left">由std_logic_vector 转换为integer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>数据类型转换</strong></p>
+<pre><code class="language-vhdl">【程序】
+LIBRARY IEEE；
+USE IEEE std_logic_1164.ALL；
+USE IEEE std_logic_UNSIGNED.ALL；
+
+ENTITY add5 IS
+ PORT（num：IN std_logic_vector（2 downto 0）；
+       ……
+       ）；
+END add5；
+
+ARCHITECTURE rt1 of add5 is
+  signal in_num：integer range 0 to 7；
+  BEGIN
+   in_num〈= CONV_INEGER（num）；       －－变换式
+   ……
+END rtl； 
+</code></pre>
+<h2 id="运算符操作符operator">运算符（操作符）OPERATOR</h2>
+<p>VHDL中共有四类运算符：</p>
+<p>逻辑运算符、关系运算符、算术运算符和连接运算符</p>
+<h1 id="eda实验">EDA实验</h1>
+<p><strong>实验一到实验三</strong>的实验报告要求：</p>
+<ol>
+<li>
+<p>实验内容与原理说明（包括框图、逻辑表达式和真值表）；</p>
+</li>
+<li>
+<p>实验模块程序代码（设计模块Design Block）和激励代码（激励模块Test Bench）；</p>
+</li>
+<li>
+<p>仿真波形图；</p>
+</li>
+<li>
+<p>综合得到的门级电路图；</p>
+</li>
+<li>
+<p>实验结果分析及思考。</p>
+</li>
+</ol>
+<p>实验软件工具：</p>
+<ol>
+<li>
+<p>QuartusII;</p>
+</li>
+<li>
+<p>ModelSim SE.</p>
+</li>
+</ol>
+<h1 id="实验一-加法器设计">实验一 加法器设计</h1>
+<h2 id="1-设计一个16位二进制全加器模块">1、 设计一个16位二进制全加器模块。</h2>
+<h2 id="2-用层次化设计方法设计一个16位二进制全加器模块">2、 用层次化设计方法，设计一个16位二进制全加器模块。</h2>
+<h2 id="3-设计一个16位超前进位二进制全加器模块">3、 设计一个16位超前进位二进制全加器模块。</h2>
+<h2 id="4-设计一个8位8421-bcd码全加器模块">4、 设计一个8位8421-BCD码全加器模块。（*）</h2>
+<h1 id="实验二-编码器和译码器设计">实验二 编码器和译码器设计</h1>
+<h2 id="1-设计一个8-3线优先编码器74ls148">1、 设计一个8-3线优先编码器（74LS148）；</h2>
+<h2 id="2-设计一个3-8线译码器74ls138">2、 设计一个3-8线译码器（74LS138）。</h2>
+<h1 id="实验三-乘法器和除法器设计">实验三 乘法器和除法器设计</h1>
+<h2 id="7-移位相加型8位硬件乘法器设计">7、移位相加型8位硬件乘法器设计。</h2>
+<h2 id="8-高速硬件除法器设计">8、高速硬件除法器设计。</h2>
+<h2 id="9-串行静态显示控制电路设">9、串行静态显示控制电路设</h2>
+<h1 id="实验四-有限状态机设计">实验四  有限状态机设计</h1>
+<p>实验报告要求：</p>
+<ol>
+<li>
+<p>实验内容与详细说明（包括框图、逻辑表达式和真值表）；</p>
+</li>
+<li>
+<p>分别用<strong>格雷码</strong>和<strong>one-hot码</strong>进行编码，进行综合时，在QuartusII的器件库中选择一款器件，报告中要说明所用器件的型号；综合后要说明设计模块所占用该型器件的资源等；</p>
+</li>
+<li>
+<p>实验模块程序代码（设计模块Design Block）和激励代码（激励模块Test Bench）；</p>
+</li>
+<li>
+<p>仿真波形图；</p>
+</li>
+<li>
+<p>综合得到的门级电路图，所用器件的型号以及设计模块所占用该型器件的资源情况；</p>
+</li>
+<li>
+<p>实验结果分析及思考。</p>
+</li>
+<li>
+<p>每一次报告用Word文档提交，文件名：姓名_班级_第几次实验_学号。</p>
+</li>
+</ol>
+<p>实验软件工具：</p>
+<ol>
+<li>
+<p>QuartusII;</p>
+</li>
+<li>
+<p>ModelSim SE.</p>
+</li>
+</ol>
+<h2 id="1-设计一个交通红绿灯控制器模块实现主干道和支路之间红绿黄灯的信号转换">1、 设计一个交通红绿灯控制器模块，实现主干道和支路之间红绿黄灯的信号转换。</h2>
+<h2 id="2-设计一个10层楼的电梯控制器模块要求1-时间先后优先级2位置先后优先级">2、 设计一个10层楼的电梯控制器模块，要求：(1) 时间先后优先级；(2)位置先后优先级。</h2>
+<h2 id="3-设计一个10位计算器-要有bcd码转换共阴极led笔画显示部分实现">3、 设计一个10位计算器(+,-,*,/)，要有BCD码转换，共阴极LED笔画显示部分实现。</h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[11]]></title>
         <id>https://coding.wangfuchao.com/post/11/</id>
