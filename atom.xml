@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sduwfc.github.io</id>
     <title>行而思雨</title>
-    <updated>2020-05-14T03:25:51.984Z</updated>
+    <updated>2020-05-14T03:54:37.416Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sduwfc.github.io"/>
     <link rel="self" href="https://sduwfc.github.io/atom.xml"/>
@@ -11,13 +11,12 @@
     <icon>https://sduwfc.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 行而思雨</rights>
     <entry>
-        <title type="html"><![CDATA[1]]></title>
+        <title type="html"><![CDATA[EDA笔记]]></title>
         <id>https://sduwfc.github.io/post/1/</id>
         <link href="https://sduwfc.github.io/post/1/">
         </link>
         <updated>2020-05-13T15:47:40.000Z</updated>
-        <content type="html"><![CDATA[<p>[TOC]</p>
-<h1 id="第一章-eda技术概述">第一章 EDA技术概述</h1>
+        <content type="html"><![CDATA[<h1 id="第一章-eda技术概述">第一章 EDA技术概述</h1>
 <h2 id="名词定义">名词定义</h2>
 <p><a href="https://en.wikipedia.org/wiki/Field-programmable_gate_array"><mark>FPGA</mark>（Field Programmable Gate Array）现场可编程逻辑门阵列</a></p>
 <p><a href="https://zh.wikipedia.org/wiki/%E7%89%B9%E6%AE%8A%E6%87%89%E7%94%A8%E7%A9%8D%E9%AB%94%E9%9B%BB%E8%B7%AF"><strong><mark>专用集成电路</mark></strong></a>（英语：<strong>A</strong>pplication <strong>S</strong>pecific <strong>I</strong>ntegrated <strong>C</strong>ircuit，缩写：<mark><strong>ASIC</strong></mark>），是指依产品需求不同而<a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E5%AE%9A%E5%88%B6">客制化</a>的特殊规格<a href="https://zh.wikipedia.org/wiki/%E9%9B%86%E6%88%90%E9%9B%BB%E8%B7%AF">集成电路</a>；相反地，非客制化的是<a href="https://zh.wikipedia.org/w/index.php?title=%E6%87%89%E7%94%A8%E7%89%B9%E5%AE%9A%E6%A8%99%E6%BA%96%E7%94%A2%E5%93%81&amp;action=edit&amp;redlink=1">应用特定标准产品</a>（Application-specific standard product）集成电路。</p>
@@ -728,15 +727,6 @@ END rtl；
 <h2 id="1-设计一个交通红绿灯控制器模块实现主干道和支路之间红绿黄灯的信号转换">1、 设计一个交通红绿灯控制器模块，实现主干道和支路之间红绿黄灯的信号转换。</h2>
 <h2 id="2-设计一个10层楼的电梯控制器模块要求1-时间先后优先级2位置先后优先级">2、 设计一个10层楼的电梯控制器模块，要求：(1) 时间先后优先级；(2)位置先后优先级。</h2>
 <h2 id="3-设计一个10位计算器-要有bcd码转换共阴极led笔画显示部分实现">3、 设计一个10位计算器(+,-,*,/)，要有BCD码转换，共阴极LED笔画显示部分实现。</h2>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[11]]></title>
-        <id>https://sduwfc.github.io/post/11/</id>
-        <link href="https://sduwfc.github.io/post/11/">
-        </link>
-        <updated>2020-05-06T01:49:30.000Z</updated>
-        <content type="html"><![CDATA[<p>1111</p>
 ]]></content>
     </entry>
 </feed>
